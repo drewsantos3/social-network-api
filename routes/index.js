@@ -10,3 +10,5 @@ router.use((req, res) => {
         error: 'Not found'
     })
 });
+
+module.exports = router;
