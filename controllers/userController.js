@@ -47,12 +47,14 @@ module.exports = {
       });
   },
 
+  //  add friend to user's friend list with $addToSet operator
   addFriend(req, res) {
     User.findOneAndUpdate({ _id: req.params.userId }, { $addToSet: { friends: req.params.friendId } }, { runValidators: true, new: true })
       .then((user) => (!user ? res.status(404).json({ message: "No user found with that ID :(" }) : res.json(user)))
       .catch((err) => res.status(500).json(err));
   },
 
+  //  remove friend from user's friend list with $pull operator
   removeFriend(req, res) {
     User.findOneAndUpdate({ _id: req.params.userId }, { $pull: { friends: req.params.friendId } }, { runValidators: true, new: true })
       .then((friend) => (!friend ? res.status(404).json({ message: "No friend found with that ID :(" }) : res.json(friend)))
