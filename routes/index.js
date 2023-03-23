@@ -6,8 +6,7 @@ router.use('/api', apiRoutes);
 
 // error if route not found
 router.use((req, res) => {
-    return res.status(404).json({
-        error: 'Not found'
+    return res.send({ error: 'Route not found'
     })
 });
 
